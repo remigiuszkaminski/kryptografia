@@ -34,8 +34,16 @@ def encrypt_ecb(image, key, block_size):
             encrypted_image.paste(Image.fromarray(encrypted_block), (x, y))
     return encrypted_image
 
+def xor_arrays(arr1, arr2):
+    result = np.zeros_like(arr1)
+    for i in range(arr1.shape[0]):
+        for j in range(arr1.shape[1]):
+            result[i,j] = arr1[i,j] ^ arr2[i,j]
+    return result
+
 def encrypt_block(block, key):
-    return np.bitwise_xor(block, key)
+    return xor_arrays(block, key)
+
 
 def encrypt_cbc(image, key, iv=None, block_size=8):
     padded_image = pad_image(image, block_size)
