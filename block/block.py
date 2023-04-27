@@ -21,7 +21,7 @@ def split_image(image, block_size):
             blocks.append(np.array(block))
     return blocks
 
-def encrypt_image(image, key, block_size):
+def encrypt_ecb(image, key, block_size):
     width, height = image.size
     encrypted_image = Image.new('RGB', (width, height), 'white')
     for x in range(0, width, block_size):
@@ -74,11 +74,19 @@ def join_blocks(blocks):
 
     return image
 
+with open("klucz.txt", "r") as f:
+    lines = f.readlines()
+    key2 = []
+    for line in lines:
+        row = [int(x) for x in line.strip().split(",")]
+        key2.append(row)
+    key2 = np.array(key2, dtype=np.uint8)
 
-image = Image.open('jazda.png')
-key = np.random.randint(0, 256, size=(8, 8), dtype=np.uint8)
-encrypted_image = encrypt_image(image, key, block_size=8)
-encrypted_image.save('encrypted_image.png')
 
-encrypted_image2 = encrypt_cbc(image, key, block_size=8)
-encrypted_image2.save('encrypted_image2.png')
+image = Image.open('plain.bmp')
+# key = np.random.randint(0, 256, size=(8, 8), dtype=np.uint8)
+encrypted_image = encrypt_ecb(image, key2, block_size=8)
+encrypted_image.save('ecb_crypto.bmp')
+
+encrypted_image2 = encrypt_cbc(image, key2, block_size=8)
+encrypted_image2.save('cbc_crypto.bmp')
