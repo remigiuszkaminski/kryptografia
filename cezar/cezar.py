@@ -1,5 +1,5 @@
 import sys
-
+#Remigiusz Kaminski
 
 def cezar():
     with open('plain.txt', 'r') as file:
@@ -92,7 +92,7 @@ def afiniczny():
         klucz1 = int(klucz[0])
         klucz2 = int(klucz[1])
         print(klucz1, klucz2)
-        if klucz1 < 0 and klucz1 > 25 or klucz2 < 0 or gcd(klucz1, 26) != 1:
+        if klucz1 < 0 or klucz2 < 0 or gcd(klucz1, 26) != 1:
             print('Wrong key')
             return
     with open('crypto.txt', 'w') as file:
@@ -118,7 +118,7 @@ def odszyfrujafiniczny():
         klucz = file.read().split(" ")
         klucz1 = int(klucz[0])
         klucz2 = int(klucz[1])
-        if klucz1 < 0 and klucz1 > 25 or klucz2 < 0 or gcd(klucz1, 26) != 1:
+        if klucz1 < 0 or klucz2 < 0 or gcd(klucz1, 26) != 1:
             print('Wrong key')
             return
         klucz1_odwrocony = odwrotnosc_modulo(klucz1, 26)
