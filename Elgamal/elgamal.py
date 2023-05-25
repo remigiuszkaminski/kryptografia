@@ -99,11 +99,11 @@ def verify():
         x = int(file.readline())
 
     gm = pow(g, check(tekst, p), p)
-    xr = pow(potega, r, p)
+    betar = pow(potega, r, p)
     rx = pow(r, x, p)
-    rxr = (xr * rx) % p
+    betarx = (betar * rx) % p
 
-    if gm == rxr:
+    if gm == betarx:
         with open('verified.txt', 'w') as file:
             file.write('Wynik weryfikacji: true')
             print('Wynik weryfikacji: true')
@@ -150,6 +150,9 @@ def main():
         signature()
     elif sys.argv[1] == '-v':
         verify()
+    else:
+        print('Wrong option')
+        exit(1)
 
 if __name__ == '__main__':
     main()
