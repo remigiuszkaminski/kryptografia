@@ -227,14 +227,6 @@ def main():
             cover_text = file.read()
 
         watermark_text = hide_message_2(cover_text, message)
-    
-    elif option == '-e' and nextoption == '-4':
-        with open('mess.txt', 'r') as file:
-            message = file.read()
-        with open('cover.html', 'r') as file:
-            cover_text = file.readlines()
-
-        watermark_text = hide_message_4(cover_text, message)
 
     elif option == '-e' and nextoption == '-3':
         with open('mess.txt', 'r') as file:
@@ -243,6 +235,14 @@ def main():
             cover_text = file.readlines()
 
         watermark_text = hide_message_3(cover_text, message)
+
+    elif option == '-e' and nextoption == '-4':
+        with open('mess.txt', 'r') as file:
+            message = file.read()
+        with open('cover.html', 'r') as file:
+            cover_text = file.readlines()
+
+        watermark_text = hide_message_4(cover_text, message)
 
     elif option == '-d' and nextoption == '-1':
         with open('watermark.html', 'r') as file:
